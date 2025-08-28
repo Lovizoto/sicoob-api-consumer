@@ -13,165 +13,70 @@ import java.util.List;
  *
  * @author michel
  */
-public class ConsultaBoletoResponseDTO {
-    
-    @SerializedName("resultado")
-    private ResultadoBoletoDTO resultado;
-    
-    
-    public ResultadoBoletoDTO getResultado() {
-        return resultado;
-    }
-
-    public void setResultado(ResultadoBoletoDTO resultado) {
-        this.resultado = resultado;
-    }
-    
-}
-
-class ResultadoBoletoDTO {
-    
-    @SerializedName("numeroCliente")
-    private Long numeroCliente;
-    
-    @SerializedName("codigoModalidade")
-    private Integer codigoModalidade;
+public class ConsultaBoletoResponseDTO extends AbstractBoletoDTO {
     
     @SerializedName("numeroContaCorrente")
     private Integer numeroContaCorrente;
     
-    @SerializedName("codigoEspecieDocumento")
-    private String codigoEspecieDocumento;
-    
-    @SerializedName("dataEmissao")
-    private String dataEmissao;
-    
-    @SerializedName("nossoNumero")
-    private Long nossoNumero;
-    
-    @SerializedName("seuNumero")
-    private String seuNumero;
-    
     @SerializedName("identificacaoBoletoEmpresa")
     private String identificacaoBoletoEmpresa;
-    
-    @SerializedName("codigoBarras")
-    private String codigoBarras;
-    
-    @SerializedName("linhaDigitavel")
-    private String linhaDigitavel;
-    
+
     @SerializedName("identificacaoEmissaoBoleto")
     private Integer identificacaoEmissaoBoleto;
-    
+
     @SerializedName("identificacaoDistribuicaoBoleto")
     private Integer identificacaoDistribuicaoBoleto;
-    
-    @SerializedName("valor")
-    private Double valor;
-    
-    @SerializedName("dataVencimento")
-    private String dataVencimento;
-    
+
     @SerializedName("dataLimitePagamento")
     private String dataLimitePagamento;
-    
-    @SerializedName("valorAbatimento")
-    private Double valorAbatimento;
-    
-    @SerializedName("tipoDesconto")
-    private Integer tipoDesconto;
-    
+
     @SerializedName("dataPrimeiroDesconto")
     private String dataPrimeiroDesconto;
-    
+
     @SerializedName("valorPrimeiroDesconto")
     private Double valorPrimeiroDesconto;
-    
+
     @SerializedName("dataSegundoDesconto")
     private String dataSegundoDesconto;
-    
+
     @SerializedName("valorSegundoDesconto")
     private Double valorSegundoDesconto;
-    
+
     @SerializedName("dataTerceiroDesconto")
     private String dataTerceiroDesconto;
-    
+
     @SerializedName("valorTerceiroDesconto")
     private Double valorTerceiroDesconto;
     
-    @SerializedName("tipoMulta")
-    private Integer tipoMulta;
-    
     @SerializedName("dataMulta")
     private String dataMulta;
-    
-    @SerializedName("valorMulta")
-    private Double valorMulta;
-    
-    @SerializedName("tipoJurosMora")
-    private Integer tipoJurosMora;
-    
+
     @SerializedName("dataJurosMora")
     private String dataJurosMora;
     
-    @SerializedName("valorJurosMora")
-    private Double valorJurosMora;
-    
-    @SerializedName("numeroParcela")
-    private Integer numeroParcela;
-    
-    @SerializedName("aceite")
-    private Boolean aceite;
-    
+    @SerializedName("codigoNegativacao")
+    private Integer codigoNegativacao;
+
     @SerializedName("numeroDiasNegativacao")
     private Integer numeroDiasNegativacao;
     
+    @SerializedName("codigoProtesto")
+    private Integer codigoProtesto;
+
     @SerializedName("numeroDiasProtesto")
     private Integer numeroDiasProtesto;
-    
+
     @SerializedName("quantidadeDiasFloat")
     private Integer quantidadeDiasFloat;
-    
-    @SerializedName("pagador")
-    private PagadorDTO pagador;
-    
-    @SerializedName("beneficiarioFinal")
-    private BeneficiarioFinalDTO beneficiarioFinal;
-    
-    @SerializedName("mensagensInstrucao")
-    private List<String> mensagensInstrucao;
-    
-    @SerializedName("listaHistorico")
-    private List<HistoricoDTO> listaHistorico;
-    
+
     @SerializedName("situacaoBoleto")
     private String situacaoBoleto;
-    
+
+    @SerializedName("listaHistorico")
+    private List<HistoricoDTO> listaHistorico;
+
     @SerializedName("rateioCreditos")
     private List<RateioCreditoDTO> rateioCreditos;
-    
-    @SerializedName("qrCode")
-    private String qrCode;
-    
-    @SerializedName("numeroContratoCobranca")
-    private Integer numeroContratoCobranca;
-
-    public Long getNumeroCliente() {
-        return numeroCliente;
-    }
-
-    public void setNumeroCliente(Long numeroCliente) {
-        this.numeroCliente = numeroCliente;
-    }
-
-    public Integer getCodigoModalidade() {
-        return codigoModalidade;
-    }
-
-    public void setCodigoModalidade(Integer codigoModalidade) {
-        this.codigoModalidade = codigoModalidade;
-    }
 
     public Integer getNumeroContaCorrente() {
         return numeroContaCorrente;
@@ -181,60 +86,12 @@ class ResultadoBoletoDTO {
         this.numeroContaCorrente = numeroContaCorrente;
     }
 
-    public String getCodigoEspecieDocumento() {
-        return codigoEspecieDocumento;
-    }
-
-    public void setCodigoEspecieDocumento(String codigoEspecieDocumento) {
-        this.codigoEspecieDocumento = codigoEspecieDocumento;
-    }
-
-    public String getDataEmissao() {
-        return dataEmissao;
-    }
-
-    public void setDataEmissao(String dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
-
-    public Long getNossoNumero() {
-        return nossoNumero;
-    }
-
-    public void setNossoNumero(Long nossoNumero) {
-        this.nossoNumero = nossoNumero;
-    }
-
-    public String getSeuNumero() {
-        return seuNumero;
-    }
-
-    public void setSeuNumero(String seuNumero) {
-        this.seuNumero = seuNumero;
-    }
-
     public String getIdentificacaoBoletoEmpresa() {
         return identificacaoBoletoEmpresa;
     }
 
     public void setIdentificacaoBoletoEmpresa(String identificacaoBoletoEmpresa) {
         this.identificacaoBoletoEmpresa = identificacaoBoletoEmpresa;
-    }
-
-    public String getCodigoBarras() {
-        return codigoBarras;
-    }
-
-    public void setCodigoBarras(String codigoBarras) {
-        this.codigoBarras = codigoBarras;
-    }
-
-    public String getLinhaDigitavel() {
-        return linhaDigitavel;
-    }
-
-    public void setLinhaDigitavel(String linhaDigitavel) {
-        this.linhaDigitavel = linhaDigitavel;
     }
 
     public Integer getIdentificacaoEmissaoBoleto() {
@@ -253,44 +110,12 @@ class ResultadoBoletoDTO {
         this.identificacaoDistribuicaoBoleto = identificacaoDistribuicaoBoleto;
     }
 
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    public String getDataVencimento() {
-        return dataVencimento;
-    }
-
-    public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
-    }
-
     public String getDataLimitePagamento() {
         return dataLimitePagamento;
     }
 
     public void setDataLimitePagamento(String dataLimitePagamento) {
         this.dataLimitePagamento = dataLimitePagamento;
-    }
-
-    public Double getValorAbatimento() {
-        return valorAbatimento;
-    }
-
-    public void setValorAbatimento(Double valorAbatimento) {
-        this.valorAbatimento = valorAbatimento;
-    }
-
-    public Integer getTipoDesconto() {
-        return tipoDesconto;
-    }
-
-    public void setTipoDesconto(Integer tipoDesconto) {
-        this.tipoDesconto = tipoDesconto;
     }
 
     public String getDataPrimeiroDesconto() {
@@ -341,36 +166,12 @@ class ResultadoBoletoDTO {
         this.valorTerceiroDesconto = valorTerceiroDesconto;
     }
 
-    public Integer getTipoMulta() {
-        return tipoMulta;
-    }
-
-    public void setTipoMulta(Integer tipoMulta) {
-        this.tipoMulta = tipoMulta;
-    }
-
     public String getDataMulta() {
         return dataMulta;
     }
 
     public void setDataMulta(String dataMulta) {
         this.dataMulta = dataMulta;
-    }
-
-    public Double getValorMulta() {
-        return valorMulta;
-    }
-
-    public void setValorMulta(Double valorMulta) {
-        this.valorMulta = valorMulta;
-    }
-
-    public Integer getTipoJurosMora() {
-        return tipoJurosMora;
-    }
-
-    public void setTipoJurosMora(Integer tipoJurosMora) {
-        this.tipoJurosMora = tipoJurosMora;
     }
 
     public String getDataJurosMora() {
@@ -381,28 +182,12 @@ class ResultadoBoletoDTO {
         this.dataJurosMora = dataJurosMora;
     }
 
-    public Double getValorJurosMora() {
-        return valorJurosMora;
+    public Integer getCodigoNegativacao() {
+        return codigoNegativacao;
     }
 
-    public void setValorJurosMora(Double valorJurosMora) {
-        this.valorJurosMora = valorJurosMora;
-    }
-
-    public Integer getNumeroParcela() {
-        return numeroParcela;
-    }
-
-    public void setNumeroParcela(Integer numeroParcela) {
-        this.numeroParcela = numeroParcela;
-    }
-
-    public Boolean getAceite() {
-        return aceite;
-    }
-
-    public void setAceite(Boolean aceite) {
-        this.aceite = aceite;
+    public void setCodigoNegativacao(Integer codigoNegativacao) {
+        this.codigoNegativacao = codigoNegativacao;
     }
 
     public Integer getNumeroDiasNegativacao() {
@@ -411,6 +196,14 @@ class ResultadoBoletoDTO {
 
     public void setNumeroDiasNegativacao(Integer numeroDiasNegativacao) {
         this.numeroDiasNegativacao = numeroDiasNegativacao;
+    }
+
+    public Integer getCodigoProtesto() {
+        return codigoProtesto;
+    }
+
+    public void setCodigoProtesto(Integer codigoProtesto) {
+        this.codigoProtesto = codigoProtesto;
     }
 
     public Integer getNumeroDiasProtesto() {
@@ -429,28 +222,12 @@ class ResultadoBoletoDTO {
         this.quantidadeDiasFloat = quantidadeDiasFloat;
     }
 
-    public PagadorDTO getPagador() {
-        return pagador;
+    public String getSituacaoBoleto() {
+        return situacaoBoleto;
     }
 
-    public void setPagador(PagadorDTO pagador) {
-        this.pagador = pagador;
-    }
-
-    public BeneficiarioFinalDTO getBeneficiarioFinal() {
-        return beneficiarioFinal;
-    }
-
-    public void setBeneficiarioFinal(BeneficiarioFinalDTO beneficiarioFinal) {
-        this.beneficiarioFinal = beneficiarioFinal;
-    }
-
-    public List<String> getMensagensInstrucao() {
-        return mensagensInstrucao;
-    }
-
-    public void setMensagensInstrucao(List<String> mensagensInstrucao) {
-        this.mensagensInstrucao = mensagensInstrucao;
+    public void setSituacaoBoleto(String situacaoBoleto) {
+        this.situacaoBoleto = situacaoBoleto;
     }
 
     public List<HistoricoDTO> getListaHistorico() {
@@ -461,14 +238,6 @@ class ResultadoBoletoDTO {
         this.listaHistorico = listaHistorico;
     }
 
-    public String getSituacaoBoleto() {
-        return situacaoBoleto;
-    }
-
-    public void setSituacaoBoleto(String situacaoBoleto) {
-        this.situacaoBoleto = situacaoBoleto;
-    }
-
     public List<RateioCreditoDTO> getRateioCreditos() {
         return rateioCreditos;
     }
@@ -476,22 +245,8 @@ class ResultadoBoletoDTO {
     public void setRateioCreditos(List<RateioCreditoDTO> rateioCreditos) {
         this.rateioCreditos = rateioCreditos;
     }
-
-    public String getQrCode() {
-        return qrCode;
-    }
-
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
-    }
-
-    public Integer getNumeroContratoCobranca() {
-        return numeroContratoCobranca;
-    }
-
-    public void setNumeroContratoCobranca(Integer numeroContratoCobranca) {
-        this.numeroContratoCobranca = numeroContratoCobranca;
-    }
+    
+    
     
 }
 

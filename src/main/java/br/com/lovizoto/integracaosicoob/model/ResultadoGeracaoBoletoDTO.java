@@ -12,8 +12,23 @@ import java.util.List;
  *
  * @author michel
  */
-public class CriacaoBoletoRequestDTO {
+public class ResultadoGeracaoBoletoDTO {
+    
+    @SerializedName("resultado")
+    private ResultadoDTO resultado;
 
+    public ResultadoDTO getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(ResultadoDTO resultado) {
+        this.resultado = resultado;
+    }    
+    
+}
+
+class ResultadoDTO {
+    
     @SerializedName("numeroCliente")
     private Long numeroCliente;
 
@@ -37,6 +52,12 @@ public class CriacaoBoletoRequestDTO {
 
     @SerializedName("identificacaoBoletoEmpresa")
     private String identificacaoBoletoEmpresa;
+
+    @SerializedName("codigoBarras")
+    private String codigoBarras;
+
+    @SerializedName("linhaDigitavel")
+    private String linhaDigitavel;
 
     @SerializedName("identificacaoEmissaoBoleto")
     private Integer identificacaoEmissaoBoleto;
@@ -113,26 +134,32 @@ public class CriacaoBoletoRequestDTO {
     @SerializedName("numeroDiasProtesto")
     private Integer numeroDiasProtesto;
 
+    @SerializedName("quantidadeDiasFloat")
+    private Integer quantidadeDiasFloat;
+
     @SerializedName("pagador")
-    private PagadorDTO pagador;
+    private PagadorDTO pagador; 
 
     @SerializedName("beneficiarioFinal")
-    private BeneficiarioFinalDTO beneficiarioFinal;
+    private BeneficiarioFinalDTO beneficiarioFinal; 
 
     @SerializedName("mensagensInstrucao")
     private List<String> mensagensInstrucao;
 
-    @SerializedName("gerarPdf")
-    private Boolean gerarPdf;
-
     @SerializedName("rateioCreditos")
-    private List<RateioCreditoDTO> rateioCreditos;
+    private List<RateioCreditoDTO> rateioCreditos; 
 
-    @SerializedName("codigoCadastrarPIX")
-    private Integer codigoCadastrarPIX;
+    @SerializedName("pdfBoleto")
+    private String pdfBoleto;
+
+    @SerializedName("qrCode")
+    private String qrCode;
 
     @SerializedName("numeroContratoCobranca")
     private Integer numeroContratoCobranca;
+
+    @SerializedName("descricaoRejeicaoPix")
+    private String descricaoRejeicaoPix;
 
     public Long getNumeroCliente() {
         return numeroCliente;
@@ -196,6 +223,22 @@ public class CriacaoBoletoRequestDTO {
 
     public void setIdentificacaoBoletoEmpresa(String identificacaoBoletoEmpresa) {
         this.identificacaoBoletoEmpresa = identificacaoBoletoEmpresa;
+    }
+
+    public String getCodigoBarras() {
+        return codigoBarras;
+    }
+
+    public void setCodigoBarras(String codigoBarras) {
+        this.codigoBarras = codigoBarras;
+    }
+
+    public String getLinhaDigitavel() {
+        return linhaDigitavel;
+    }
+
+    public void setLinhaDigitavel(String linhaDigitavel) {
+        this.linhaDigitavel = linhaDigitavel;
     }
 
     public Integer getIdentificacaoEmissaoBoleto() {
@@ -398,6 +441,14 @@ public class CriacaoBoletoRequestDTO {
         this.numeroDiasProtesto = numeroDiasProtesto;
     }
 
+    public Integer getQuantidadeDiasFloat() {
+        return quantidadeDiasFloat;
+    }
+
+    public void setQuantidadeDiasFloat(Integer quantidadeDiasFloat) {
+        this.quantidadeDiasFloat = quantidadeDiasFloat;
+    }
+
     public PagadorDTO getPagador() {
         return pagador;
     }
@@ -422,14 +473,6 @@ public class CriacaoBoletoRequestDTO {
         this.mensagensInstrucao = mensagensInstrucao;
     }
 
-    public Boolean getGerarPdf() {
-        return gerarPdf;
-    }
-
-    public void setGerarPdf(Boolean gerarPdf) {
-        this.gerarPdf = gerarPdf;
-    }
-
     public List<RateioCreditoDTO> getRateioCreditos() {
         return rateioCreditos;
     }
@@ -438,12 +481,20 @@ public class CriacaoBoletoRequestDTO {
         this.rateioCreditos = rateioCreditos;
     }
 
-    public Integer getCodigoCadastrarPIX() {
-        return codigoCadastrarPIX;
+    public String getPdfBoleto() {
+        return pdfBoleto;
     }
 
-    public void setCodigoCadastrarPIX(Integer codigoCadastrarPIX) {
-        this.codigoCadastrarPIX = codigoCadastrarPIX;
+    public void setPdfBoleto(String pdfBoleto) {
+        this.pdfBoleto = pdfBoleto;
+    }
+
+    public String getQrCode() {
+        return qrCode;
+    }
+
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
     }
 
     public Integer getNumeroContratoCobranca() {
@@ -454,11 +505,15 @@ public class CriacaoBoletoRequestDTO {
         this.numeroContratoCobranca = numeroContratoCobranca;
     }
 
+    public String getDescricaoRejeicaoPix() {
+        return descricaoRejeicaoPix;
+    }
+
+    public void setDescricaoRejeicaoPix(String descricaoRejeicaoPix) {
+        this.descricaoRejeicaoPix = descricaoRejeicaoPix;
+    }
+    
+    
+    
     
 }
-
-
-
-
-
-
