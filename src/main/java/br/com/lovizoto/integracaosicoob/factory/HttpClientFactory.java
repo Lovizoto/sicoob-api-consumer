@@ -51,7 +51,7 @@ public class HttpClientFactory {
             
             return HttpClients.custom()
                     .setSSLContext(sslContext)
-                    .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                    .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE) //veficar o uso desta linha
                     .build();
             
         } catch (Exception ex) {

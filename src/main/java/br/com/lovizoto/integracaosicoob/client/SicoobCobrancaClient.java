@@ -10,14 +10,18 @@ import java.net.URISyntaxException;
 import java.util.List;
 import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
 import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
+import main.java.br.com.lovizoto.integracaosicoob.model.AlteracaoBoletoRequestDTO;
 import main.java.br.com.lovizoto.integracaosicoob.model.BaixaBoletoRequestDTO;
 import main.java.br.com.lovizoto.integracaosicoob.model.ConsultaBoletoWrapperDTO;
 import main.java.br.com.lovizoto.integracaosicoob.model.CriacaoBoletoRequestDTO;
+import main.java.br.com.lovizoto.integracaosicoob.model.PagadorRequestDTO;
 import main.java.br.com.lovizoto.integracaosicoob.model.ResultadoGeracaoBoletoDTO;
 import main.java.br.com.lovizoto.integracaosicoob.model.SegundaViaBoletoWrapperDTO;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 
@@ -107,12 +111,57 @@ public class SicoobCobrancaClient extends AbstractSicoobClient {
             
             executeRequestVoid(post, accessToken);            
         } catch (Exception e) {
-            throw new SicoobApiException("Erro ao construir a requisição para baixa de boleto.", e);
+           if (e instanceof SicoobApiException) {
+                throw (SicoobApiException) e;
+            }
+            throw new SicoobApiException("Erro ao construir a requisição para baixar o boleto.", e);
         }
 
     }
     
+    public void alterarBoleto(String accessToken, Long nossoNumero, AlteracaoBoletoRequestDTO alteracaoRequest) {
+        
+        String endpoint =  baseUrl + "/cobranca-bancaria/v3/boletos/" + nossoNumero;
+        
+        HttpPatch patch = new HttpPatch(endpoint);
+        
+        try {
+            String jsonPayload = gson.toJson(alteracaoRequest);
+            patch.setEntity(new StringEntity(jsonPayload, "UTF-8"));
+            
+            executeRequestVoid(patch, accessToken);
+            
+            
+        } catch (Exception e) {
+            if (e instanceof SicoobApiException) {
+                throw (SicoobApiException) e;
+            }
+            throw new SicoobApiException("Erro ao construir a requisição para alteração de boleto.", e);
+            
+        }
+        
+    }
     
+    public void incluirPagador(String acessToken,PagadorRequestDTO pagadorRequest) {
+        
+        String endpoint = baseUrl + "/cobranca-bancaria/v3/boletos/pagadores";
+        
+        HttpPut put = new HttpPut(endpoint);
+        
+        try {
+            String jsonPayload = gson.toJson(pagadorRequest);
+            put.setEntity(new StringEntity(jsonPayload, "UTF-8"));
+            
+            executeRequestVoid(put, acessToken);
+            
+        } catch (Exception e) {
+            if (e instanceof SicoobApiException) {
+                throw (SicoobApiException) e;
+            }
+            throw new SicoobApiException("Eroo ao construir  a requisição de inclusão de pagador.", e);
+        }
+        
+    }
     
     
     
