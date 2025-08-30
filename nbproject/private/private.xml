@@ -3,14 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/AbstractBoletoDTO.java</file>
             <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/client/SicoobAuthClient.java</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/config/SicoobConfig.java</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/ErroResponseDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/ConsultaBoletoWrapperDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/client/SicoobContaCorrenteClient.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/SegundaViaBoletoResponseDTO.java</file>
             <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/exception/SicoobApiException.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/BaixaBoletoRequestDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/ExtratoResponseDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/PagadorRequestDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/ConsultaBoletoResponseDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/client/SicoobCobrancaClient.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/config/SicoobConfig.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/client/AbstractSicoobClient.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/ErroResponseDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/SaldoResponseDTO.java</file>
+            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/SegundaViaBoletoWrapperDTO.java</file>
             <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/CriacaoBoletoRequestDTO.java</file>
             <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/factory/HttpClientFactory.java</file>
             <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/APISicoobV3.java</file>
-            <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/main/java/br/com/lovizoto/integracaosicoob/model/ConsultaBoletoResponseDTO.java</file>
             <file>file:/C:/Users/michel/Documents/NetBeansProjects/APISicoobV3/src/resources/sicoob.properties</file>
         </group>
     </open-files>

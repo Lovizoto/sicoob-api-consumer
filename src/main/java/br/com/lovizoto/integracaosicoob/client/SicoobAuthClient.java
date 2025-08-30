@@ -11,6 +11,7 @@ import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -30,29 +31,29 @@ public class SicoobAuthClient {
     private static final String GRANT_TYPE = "client_credentials";
     private static final String SCOPE_SALDO_EXTRATO = "openid cco_extrato cco_saldo";
 
-    private final String clientId;
     private final HttpClient httpClient;
+    private final SicoobConfig config;
+    private final Gson gson = new Gson();
 
-    public SicoobAuthClient(String clientId, HttpClient httpClient) {
-        this.clientId = clientId;
+    public SicoobAuthClient(HttpClient httpClient, SicoobConfig config) {
         this.httpClient = httpClient;
-    }
+        this.config = config;
+    }  
 
     public String getTokenParaSaldoExtrato() {
 
         HttpPost httpPost = new HttpPost(TOKEN_ENDPOINT);
 
         List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("client_id", this.clientId));
+        params.add(new BasicNameValuePair("client_id", config.getClientId()));
         params.add(new BasicNameValuePair("grant_type", GRANT_TYPE));
         params.add(new BasicNameValuePair("scope", SCOPE_SALDO_EXTRATO));
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-
             String responseBody = executeRequest(httpPost);
 
-            TokenResponse tokenResponse = new Gson().fromJson(responseBody, TokenResponse.class);
+            TokenResponse tokenResponse = gson.fromJson(responseBody, TokenResponse.class);
 
             return tokenResponse.getAccessToken();
 

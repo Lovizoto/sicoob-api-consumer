@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
 import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
-import main.java.br.com.lovizoto.integracaosicoob.model.ErroResponseDTO;
+import main.java.br.com.lovizoto.integracaosicoob.dto.response.ErroResponseDTO;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpUriRequest;

@@ -9,8 +9,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
 import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
-import main.java.br.com.lovizoto.integracaosicoob.model.ExtratoResponseDTO;
-import main.java.br.com.lovizoto.integracaosicoob.model.SaldoResponseDTO;
+import main.java.br.com.lovizoto.integracaosicoob.dto.shared.ExtratoResponseDTO;
+import main.java.br.com.lovizoto.integracaosicoob.dto.response.SaldoResponseDTO;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
@@ -28,7 +28,7 @@ public class SicoobContaCorrenteClient extends AbstractSicoobClient {
     
     public ExtratoResponseDTO consultarExtrato(String accessToken, int mes, int ano) {
         
-        String endpoint = baseUrl + "/conta-corrente/v4/extrato/" + mes + "/" + ano;        
+        String endpoint = baseUrl + "/conta-corrente/v2/extrato/" + mes + "/" + ano;        
         try {
             URI uri = new URIBuilder(endpoint)
                     .addParameter("numeroContaCorrente", String.valueOf(config.getNumeroConta()))
@@ -45,11 +45,10 @@ public class SicoobContaCorrenteClient extends AbstractSicoobClient {
     
     public SaldoResponseDTO consultarSaldo(String accessToken) {
         
-        String endPoint = baseUrl + "/conta-corrente/v4/saldo";
+        String endPoint = baseUrl + "/conta-corrente/v2/saldo";
         
         try {
-            URI uri = new URIBuilder(endPoint)
-                    .addParameter("client_id", config.getClientId())
+            URI uri = new URIBuilder(endPoint)                   
                     .addParameter("numeroContaCorrente", String.valueOf(config.getNumeroConta()))
                     .build();
             
