@@ -10,9 +10,11 @@ import main.java.br.com.lovizoto.integracaosicoob.client.SicoobAuthClient;
 import main.java.br.com.lovizoto.integracaosicoob.client.SicoobCobrancaClient;
 import main.java.br.com.lovizoto.integracaosicoob.client.SicoobContaCorrenteClient;
 import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
+import main.java.br.com.lovizoto.integracaosicoob.dto.response.ConsultaBoletoWrapperDTO;
 import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
 import main.java.br.com.lovizoto.integracaosicoob.factory.HttpClientFactory;
 import main.java.br.com.lovizoto.integracaosicoob.dto.response.SaldoResponseDTO;
+import main.java.br.com.lovizoto.integracaosicoob.dto.shared.ConsultaBoletoResponseDTO;
 import org.apache.http.impl.client.CloseableHttpClient;
 
 /**
@@ -31,8 +33,14 @@ public class APISicoobV3 {
 
             try (CloseableHttpClient httpClient = HttpClientFactory.createHttpClient(config)) {
 
+                SicoobAuthClient sicoobAuth = new SicoobAuthClient(httpClient, config);
+                String tokenContaCorrente = sicoobAuth.getAuthTokenForContaCorrente().getAccessToken();
+                String tokenCobranca = sicoobAuth.getAuthTokenForCobranca().getAccessToken();
                 
                 
+                
+                
+            
 
                 
             }

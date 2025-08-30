@@ -6,7 +6,6 @@
 package main.java.br.com.lovizoto.integracaosicoob.client;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
 import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
 import main.java.br.com.lovizoto.integracaosicoob.dto.response.ErroResponseDTO;
+import main.java.br.com.lovizoto.integracaosicoob.dto.response.TokenResponseDTO;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -33,10 +33,8 @@ public class SicoobAuthClient {
 
     // Constantes para os escopos. O de cobrança é bem extenso.
     private static final String SCOPE_CONTA_CORRENTE = "openid cco_extrato cco_saldo";
-    private static final String SCOPE_COBRANCA = "cobranca_boletos_consultar cobranca_boletos_incluir "
-            + "cobranca_boletos_pagador cobranca_boletos_segunda_via cobranca_boletos_descontos "
-            + "cobranca_boletos_abatimentos cobranca_boletos_valor_nominal cobranca_boletos_seu_numero "
-            + "cobranca_boletos_especie_documento cobranca_boletos_baixa cobranca_boletos_rateio_credito";
+    private static final String SCOPE_COBRANCA = "boletos_inclusao webhooks_alteracao boletos_consulta webhooks_consulta"
+            + " webhooks_inclusao boletos_alteracao";
     // Adicione outros escopos de cobrança se necessário.
 
     private final HttpClient httpClient;
@@ -86,87 +84,6 @@ public class SicoobAuthClient {
         } catch (IOException e) {
             throw new SicoobApiException("Falha de comunicação ao tentar obter token de acesso.", e);
         }
-    }
-
-    private static class TokenResponseDTO {
-
-        @SerializedName("access_token")
-        private String accessToken;
-
-        @SerializedName("expires_in")
-        private Integer expiresIn;
-
-        @SerializedName("refresh_expires_in")
-        private Integer refreshExpiresIn;
-
-        @SerializedName("token_type")
-        private String tokenType;
-
-        @SerializedName("id_token")
-        private String idToken;
-
-        @SerializedName("not-before-policy")
-        private Integer notBeforePolicy;
-
-        @SerializedName("scope")
-        private String scope;
-
-        public String getAccessToken() {
-            return accessToken;
-        }
-
-        public void setAccessToken(String accessToken) {
-            this.accessToken = accessToken;
-        }
-
-        public Integer getExpiresIn() {
-            return expiresIn;
-        }
-
-        public void setExpiresIn(Integer expiresIn) {
-            this.expiresIn = expiresIn;
-        }
-
-        public Integer getRefreshExpiresIn() {
-            return refreshExpiresIn;
-        }
-
-        public void setRefreshExpiresIn(Integer refreshExpiresIn) {
-            this.refreshExpiresIn = refreshExpiresIn;
-        }
-
-        public String getTokenType() {
-            return tokenType;
-        }
-
-        public void setTokenType(String tokenType) {
-            this.tokenType = tokenType;
-        }
-
-        public String getIdToken() {
-            return idToken;
-        }
-
-        public void setIdToken(String idToken) {
-            this.idToken = idToken;
-        }
-
-        public Integer getNotBeforePolicy() {
-            return notBeforePolicy;
-        }
-
-        public void setNotBeforePolicy(Integer notBeforePolicy) {
-            this.notBeforePolicy = notBeforePolicy;
-        }
-
-        public String getScope() {
-            return scope;
-        }
-
-        public void setScope(String scope) {
-            this.scope = scope;
-        }
-
     }
 
 }

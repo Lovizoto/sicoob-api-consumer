@@ -54,7 +54,7 @@ public class SicoobCobrancaClient extends AbstractSicoobClient {
 
     }
 
-    public ConsultaBoletoWrapperDTO consultarBoleto(String accessToken, Long nossoNumero) {
+    public ConsultaBoletoWrapperDTO consultarBoleto(String accessToken, Integer nossoNumero) {
 
         String endpoint = this.baseUrl + "/cobranca-bancaria/v3/boletos";
 
