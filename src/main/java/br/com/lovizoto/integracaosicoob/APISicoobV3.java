@@ -31,12 +31,8 @@ public class APISicoobV3 {
 
             try (CloseableHttpClient httpClient = HttpClientFactory.createHttpClient(config)) {
 
-                SicoobAuthClient authClient = new SicoobAuthClient(httpClient, config);
-                SicoobCobrancaClient cobrancaClient = new SicoobCobrancaClient(httpClient, config);
-                SicoobContaCorrenteClient contaCorrenteClient = new SicoobContaCorrenteClient(httpClient, config);
-
-                //FLUXO DE CONSULTA DE SALDO
-                String tokenContaCorrente = authClient.getTokenParaSaldoExtrato();
+                
+                
 
                 
             }

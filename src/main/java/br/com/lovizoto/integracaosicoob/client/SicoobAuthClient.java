@@ -9,10 +9,11 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import main.java.br.com.lovizoto.integracaosicoob.exception.SicoobApiException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import main.java.br.com.lovizoto.integracaosicoob.config.SicoobConfig;
-import org.apache.http.HttpEntity;
+import main.java.br.com.lovizoto.integracaosicoob.dto.response.ErroResponseDTO;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -27,9 +28,16 @@ import org.apache.http.util.EntityUtils;
  */
 public class SicoobAuthClient {
 
-    private static final String TOKEN_ENDPOINT = "https://auth.sicoob.com.br/auth/realms/cooperado/protocol/openid-connect/token";
+    // Constantes para os parâmetros do request
     private static final String GRANT_TYPE = "client_credentials";
-    private static final String SCOPE_SALDO_EXTRATO = "openid cco_extrato cco_saldo";
+
+    // Constantes para os escopos. O de cobrança é bem extenso.
+    private static final String SCOPE_CONTA_CORRENTE = "openid cco_extrato cco_saldo";
+    private static final String SCOPE_COBRANCA = "cobranca_boletos_consultar cobranca_boletos_incluir "
+            + "cobranca_boletos_pagador cobranca_boletos_segunda_via cobranca_boletos_descontos "
+            + "cobranca_boletos_abatimentos cobranca_boletos_valor_nominal cobranca_boletos_seu_numero "
+            + "cobranca_boletos_especie_documento cobranca_boletos_baixa cobranca_boletos_rateio_credito";
+    // Adicione outros escopos de cobrança se necessário.
 
     private final HttpClient httpClient;
     private final SicoobConfig config;
@@ -38,52 +46,49 @@ public class SicoobAuthClient {
     public SicoobAuthClient(HttpClient httpClient, SicoobConfig config) {
         this.httpClient = httpClient;
         this.config = config;
-    }  
+    }
 
-    public String getTokenParaSaldoExtrato() {
+    public TokenResponseDTO getAuthTokenForContaCorrente() {
+        return getAccessToken(SCOPE_CONTA_CORRENTE);
+    }
 
-        HttpPost httpPost = new HttpPost(TOKEN_ENDPOINT);
+    public TokenResponseDTO getAuthTokenForCobranca() {
+        return getAccessToken(SCOPE_COBRANCA);
+    }
+
+    private TokenResponseDTO getAccessToken(String scope) {
+        // A URL agora vem do arquivo de configuração, tornando o cliente mais flexível
+        HttpPost httpPost = new HttpPost(config.getAuthUrl());
 
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("client_id", config.getClientId()));
         params.add(new BasicNameValuePair("grant_type", GRANT_TYPE));
-        params.add(new BasicNameValuePair("scope", SCOPE_SALDO_EXTRATO));
+        params.add(new BasicNameValuePair("scope", scope));
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-            String responseBody = executeRequest(httpPost);
 
-            TokenResponse tokenResponse = gson.fromJson(responseBody, TokenResponse.class);
-
-            return tokenResponse.getAccessToken();
-
-        } catch (Exception e) {
-            throw new SicoobApiException("Erro interno com encoding de caracteres", e);
-        }
-
-    }
-
-    private String executeRequest(HttpPost request) {
-
-        try {
-            HttpResponse httpResponse = this.httpClient.execute(request);
+            HttpResponse httpResponse = this.httpClient.execute(httpPost);
             int statusCode = httpResponse.getStatusLine().getStatusCode();
-            HttpEntity entity = httpResponse.getEntity();
-            String responseBody = EntityUtils.toString(entity, "UTF-8");
+            String responseBody = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
 
             if (statusCode < 200 || statusCode >= 300) {
-                throw new SicoobApiException("API retornou erro. Status: " + statusCode + ", Body: " + responseBody);
+                // Tenta fazer o parse do erro antes de lançar a exceção
+                ErroResponseDTO erro = gson.fromJson(responseBody, ErroResponseDTO.class);
+                throw new SicoobApiException("API de autenticação retornou erro. Status: " + statusCode + ", Mensagens: " + erro.getMensagens());
             }
 
-            return responseBody;
+            return gson.fromJson(responseBody, TokenResponseDTO.class);
 
+        } catch (UnsupportedEncodingException e) {
+            // Este erro é muito raro com "UTF-8", mas deve ser tratado.
+            throw new SicoobApiException("Erro interno: Encoding de caracteres não suportado.", e);
         } catch (IOException e) {
-            throw new SicoobApiException("Falha na comunicação com a API Sicoob.", e);
+            throw new SicoobApiException("Falha de comunicação ao tentar obter token de acesso.", e);
         }
-
     }
 
-    private static class TokenResponse {
+    private static class TokenResponseDTO {
 
         @SerializedName("access_token")
         private String accessToken;
