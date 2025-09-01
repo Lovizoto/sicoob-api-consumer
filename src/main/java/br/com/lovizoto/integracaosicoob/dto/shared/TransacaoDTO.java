@@ -6,37 +6,38 @@
 package main.java.br.com.lovizoto.integracaosicoob.dto.shared;
 
 import com.google.gson.annotations.SerializedName;
+import java.math.BigDecimal;
 
 /**
  *
  * @author michel
  */
 public class TransacaoDTO {
-    
+
     @SerializedName("transactionId")
     private String transactionId;
-    
+
     @SerializedName("tipo")
     private String tipo;
-    
+
     @SerializedName("valor")
-    private String valor;
-    
+    private BigDecimal valor;
+
     @SerializedName("data")
     private String data;
-    
+
     @SerializedName("dataLote")
     private String dataLote;
-    
+
     @SerializedName("descricao")
     private String descricao;
-    
+
     @SerializedName("numeroDocumento")
     private String numeroDocumento;
-    
+
     @SerializedName("cpfCnpj")
     private String cpfCnpj;
-    
+
     @SerializedName("descInfComplementar")
     private String descInfComplementar;
 
@@ -56,11 +57,11 @@ public class TransacaoDTO {
         this.tipo = tipo;
     }
 
-    public String getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -111,7 +112,5 @@ public class TransacaoDTO {
     public void setDescInfComplementar(String descInfComplementar) {
         this.descInfComplementar = descInfComplementar;
     }
-    
-    
-    
+
 }

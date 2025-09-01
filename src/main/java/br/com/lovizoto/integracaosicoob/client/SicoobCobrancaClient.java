@@ -35,13 +35,12 @@ public class SicoobCobrancaClient extends AbstractSicoobClient {
         super(httpClient, config);
     }
 
-    public ResultadoGeracaoBoletoDTO gerarBoletos(String acessToken, List<CriacaoBoletoRequestDTO> boletoRequest) {
+    public ResultadoGeracaoBoletoDTO gerarBoletos(String acessToken, CriacaoBoletoRequestDTO boletoRequest) {
 
         String endpoint = this.baseUrl + "/cobranca-bancaria/v3/boletos";
         HttpPost post = new HttpPost(endpoint);
 
         try {
-//            List<CriacaoBoletoRequestDTO> listaBoletos = List.of(boletoRequest);
             String jsonPayload = gson.toJson(boletoRequest);
             StringEntity entity = new StringEntity(jsonPayload, "UTF-8");
             post.setEntity(entity);

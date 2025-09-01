@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author michel
  */
-public class ExtratoResponseDTO {
+public class ExtratoResponseDTO2 {
     
     @SerializedName("saldoAtual")
     private String saldoAtual;
